@@ -8,6 +8,7 @@
                 <a class="nav-link{{ is_active_page('account') }}" href="{{ route('account.index') }}">Account</a>
                 <a class="nav-link{{ is_active_page('*/profile') }}" href="{{ route('account.profile.index') }}">Profile</a>
                 <a class="nav-link{{ is_active_page('*/security') }}" href="{{ route('account.security.index') }}">Security</a>
+                <a class="nav-link{{ is_active_page('*/subscription') }}" href="{{ route('account.billing.index') }}">Billing</a>
             </nav>
         </div>
         <div class="col-12 col-md-9">

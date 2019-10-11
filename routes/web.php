@@ -25,4 +25,7 @@ Route::group(['prefix' => 'account', 'middleware' => ['auth', 'verified'], 'as' 
     Route::post('/profile', 'Account\ProfileController@store')->name('profile.store');
     Route::get('/security', 'Account\SecurityController@index')->name('security.index');
     Route::post('/security', 'Account\SecurityController@store')->name('security.store');
+
+    Route::get('/subscription', 'SubscriptionController@index')->name('billing.index');
+    Route::post('/subscription', 'SubscriptionController@store')->name('billing.store');
 });

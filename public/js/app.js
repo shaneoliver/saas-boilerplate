@@ -50119,101 +50119,104 @@ Vue.component('example-component', _components_ExampleComponent_vue__WEBPACK_IMP
 
 var app = new Vue({
   el: '#app'
-}); // Create a Stripe client.
-
-var stripe = Stripe(STRIPE_KEY); // Create an instance of Elements.
-
-var elements = stripe.elements(); // Custom styling can be passed to options when creating an Element.
-// (Note that this demo uses a wider set of styles than the guide below.)
-
-var style = {
-  base: {
-    color: '#32325d',
-    fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-    fontSmoothing: 'antialiased',
-    fontSize: '16px',
-    '::placeholder': {
-      color: '#aab7c4'
-    }
-  },
-  invalid: {
-    color: '#fa755a',
-    iconColor: '#fa755a'
-  }
-};
-var cardElement = elements.create('card', {
-  style: style
 });
-cardElement.mount('#card-element');
-var cardHolderName = document.getElementById('card-holder-name');
-var cardButton = document.getElementById('card-button');
-var clientSecret = cardButton.dataset.secret; // Handle real-time validation errors from the card Element.
 
-cardElement.addEventListener('change', function (event) {
-  var displayError = document.getElementById('card-errors');
-  cardButton.removeAttribute('disabled');
+if (typeof Stripe !== "undefined") {
+  // Create a Stripe client.
+  var stripe = Stripe(STRIPE_KEY); // Create an instance of Elements.
 
-  if (event.error) {
-    displayError.textContent = event.error.message;
-  } else {
-    displayError.textContent = '';
-  }
-});
-cardButton.addEventListener('click',
-/*#__PURE__*/
-function () {
-  var _ref = _asyncToGenerator(
-  /*#__PURE__*/
-  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(e) {
-    var _ref2, setupIntent, error, errorElement, form, hiddenInput;
+  var elements = stripe.elements(); // Custom styling can be passed to options when creating an Element.
+  // (Note that this demo uses a wider set of styles than the guide below.)
 
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            event.preventDefault();
-            cardButton.setAttribute('disabled', true);
-            _context.next = 4;
-            return stripe.handleCardSetup(clientSecret, cardElement, {
-              payment_method_data: {
-                billing_details: {
-                  name: cardHolderName.value
-                }
-              }
-            });
-
-          case 4:
-            _ref2 = _context.sent;
-            setupIntent = _ref2.setupIntent;
-            error = _ref2.error;
-
-            if (error) {
-              // Display "error.message" to the user...
-              errorElement = document.getElementById('card-errors');
-              errorElement.textContent = result.error.message;
-            } else {
-              form = document.getElementById('payment-form');
-              hiddenInput = document.createElement('input');
-              hiddenInput.setAttribute('type', 'hidden');
-              hiddenInput.setAttribute('name', 'paymentMethod');
-              hiddenInput.setAttribute('value', setupIntent.payment_method);
-              form.appendChild(hiddenInput); // Submit the form
-
-              form.submit();
-            }
-
-          case 8:
-          case "end":
-            return _context.stop();
-        }
+  var style = {
+    base: {
+      color: '#32325d',
+      fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+      fontSmoothing: 'antialiased',
+      fontSize: '16px',
+      '::placeholder': {
+        color: '#aab7c4'
       }
-    }, _callee);
-  }));
-
-  return function (_x) {
-    return _ref.apply(this, arguments);
+    },
+    invalid: {
+      color: '#fa755a',
+      iconColor: '#fa755a'
+    }
   };
-}());
+  var cardElement = elements.create('card', {
+    style: style
+  });
+  cardElement.mount('#card-element');
+  var cardHolderName = document.getElementById('card-holder-name');
+  var cardButton = document.getElementById('card-button');
+  var clientSecret = cardButton.dataset.secret; // Handle real-time validation errors from the card Element.
+
+  cardElement.addEventListener('change', function (event) {
+    var displayError = document.getElementById('card-errors');
+    cardButton.removeAttribute('disabled');
+
+    if (event.error) {
+      displayError.textContent = event.error.message;
+    } else {
+      displayError.textContent = '';
+    }
+  });
+  cardButton.addEventListener('click',
+  /*#__PURE__*/
+  function () {
+    var _ref = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(e) {
+      var _ref2, setupIntent, error, errorElement, form, hiddenInput;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              event.preventDefault();
+              cardButton.setAttribute('disabled', true);
+              _context.next = 4;
+              return stripe.handleCardSetup(clientSecret, cardElement, {
+                payment_method_data: {
+                  billing_details: {
+                    name: cardHolderName.value
+                  }
+                }
+              });
+
+            case 4:
+              _ref2 = _context.sent;
+              setupIntent = _ref2.setupIntent;
+              error = _ref2.error;
+
+              if (error) {
+                // Display "error.message" to the user...
+                errorElement = document.getElementById('card-errors');
+                errorElement.textContent = result.error.message;
+              } else {
+                form = document.getElementById('payment-form');
+                hiddenInput = document.createElement('input');
+                hiddenInput.setAttribute('type', 'hidden');
+                hiddenInput.setAttribute('name', 'paymentMethod');
+                hiddenInput.setAttribute('value', setupIntent.payment_method);
+                form.appendChild(hiddenInput); // Submit the form
+
+                form.submit();
+              }
+
+            case 8:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function (_x) {
+      return _ref.apply(this, arguments);
+    };
+  }());
+}
 
 /***/ }),
 

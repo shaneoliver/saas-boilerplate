@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class SubscriptionController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,9 +14,7 @@ class SubscriptionController extends Controller
      */
     public function index()
     {
-        return view('account.billing.subscription', [
-            'intent' => auth()->user()->createSetupIntent()
-        ]);
+        return view('admin.index');
     }
 
     /**
@@ -36,9 +35,7 @@ class SubscriptionController extends Controller
      */
     public function store(Request $request)
     {
-        $subscription = auth()->user()->newSubscription('main', 'plan_xxxx')->create($request->paymentMethod);
-
-        return $subscription;
+        //
     }
 
     /**

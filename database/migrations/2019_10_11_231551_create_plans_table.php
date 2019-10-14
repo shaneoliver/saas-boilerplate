@@ -18,7 +18,9 @@ class CreatePlansTable extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->string('slug')->nullable();
-            $table->string('plan_id');
+            $table->string('plan_id')->unique();
+            $table->integer('amount');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

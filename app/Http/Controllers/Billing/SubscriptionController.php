@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Billing;
 
-use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class DummyController extends Controller
+class SubscriptionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,9 @@ class DummyController extends Controller
      */
     public function index()
     {
-        //
+        return view('account.billing.subscription', [
+            'intent' => auth()->user()->createSetupIntent()
+        ]);
     }
 
     /**
@@ -35,16 +37,18 @@ class DummyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $subscription = auth()->user()->newSubscription('main', 'plan_xxxx')->create($request->paymentMethod);
+
+        return $subscription;
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
     {
         //
     }
@@ -52,10 +56,10 @@ class DummyController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +68,10 @@ class DummyController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +79,10 @@ class DummyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
         //
     }

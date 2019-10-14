@@ -1,7 +1,23 @@
 // Body
-$body-bg: hsl(210, 100%, 99%);
+
+$white:    #fff;
+$gray-100: hsl(210, 25%, 98%);
+$gray-200: hsl(210, 25%, 88%);
+$gray-300: hsl(210, 25%, 78%);
+$gray-400: hsl(210, 25%, 68%);
+$gray-500: hsl(210, 25%, 58%);
+$gray-600: hsl(208, 25%, 48%);
+$gray-700: hsl(210, 25%, 38%);
+$gray-800: hsl(210, 25%, 28%);
+$gray-900: hsl(210, 25%, 18%);
+$black:    #000;
+
+$body-bg: $gray-100;
 
 // Typography
 $font-family-sans-serif: 'Nunito', sans-serif;
 $font-size-base: 1rem;
 $line-height-base: 1.6;
+
+$card-cap-bg: white;
+$card-border-color: none;

@@ -30,10 +30,10 @@ class SecurityController extends Controller
      */
     public function store(UpdatePasswordRequest $request)
     {
-        auth()->user()->update([
+        $request->user()->update([
             'password' => Hash::make($request->password),
         ]);
-// dd($request->user()->email);
+
         Mail::to($request->user()->email)->send(new PasswordUpdated());
 
         Session::flash('message', 'Your password has been updated.');

@@ -25,8 +25,20 @@ class UpdatePasswordRequest extends FormRequest
     public function rules()
     {
         return [
-            'current_password' => ['required', new CurrentPassword()],
+            'current_password' => ['required', 'password'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ];
+    }
+
+    /**
+     * Get custom messages for validator errors.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'current_password.password' => 'You have entered an incorrect password.'
         ];
     }
 }

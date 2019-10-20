@@ -32,6 +32,9 @@ Route::group(['prefix' => 'account', 'middleware' => ['auth', 'verified'], 'as' 
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], function() {
     Route::get('/', 'Admin\AdminController@index')->name('index');
+
+    // Users
+    Route::get('/user', 'Admin\UserController@index')->name('user.index');
     
     // Plans
     Route::get('/plan', 'Admin\PlanController@index')->name('plan.index');
